@@ -107,7 +107,11 @@
     bat
     firefox
     home-manager
-    fira-code-nerdfont
+  ];
+
+  fonts.packages = with pkgs; [
+    fira-code
+    fira-code-symbols
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
