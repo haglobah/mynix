@@ -107,6 +107,7 @@
     bat
     firefox
     home-manager
+    fira-code-nerdfont
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
