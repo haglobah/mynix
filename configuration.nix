@@ -107,6 +107,7 @@
     bat
     firefox
     home-manager
+    gnome.gnome-terminal
   ];
 
   fonts.packages = with pkgs; [
