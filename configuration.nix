@@ -113,8 +113,7 @@
   ];
 
   fonts.packages = with pkgs; [
-    fira-code
-    fira-code-symbols
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
