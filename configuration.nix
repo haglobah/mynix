@@ -108,6 +108,7 @@
     curl
     bat
     firefox
+    chromium
     home-manager
     gnome.gnome-terminal
   ];
