@@ -111,11 +111,24 @@
     chromium
     home-manager
     gnome.gnome-terminal
+
+    # Samba for Storage Box
+    cifs-utils
   ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
+
+  fileSystems."/mnt/share" = {
+    device = "//<IP_OR_HOST>/path/to/share";
+    fsType = "cifs";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+    in ["${automount_opts},credentials=./smb-secrets"];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
