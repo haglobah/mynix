@@ -24,6 +24,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -120,6 +123,7 @@
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
+  # Mount for storage box
   fileSystems."/mnt/share" = {
     device = "//u366465.your-storagebox.de/backup";
     fsType = "cifs";
