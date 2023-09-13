@@ -24,6 +24,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -111,11 +114,25 @@
     chromium
     home-manager
     gnome.gnome-terminal
+
+    # Samba for Storage Box
+    cifs-utils
   ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
+
+  # Mount for storage box
+  fileSystems."/mnt/share" = {
+    device = "//u366465.your-storagebox.de/backup";
+    fsType = "cifs";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+    in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
