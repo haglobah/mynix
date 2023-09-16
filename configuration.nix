@@ -114,6 +114,10 @@
     home-manager
     gnome.gnome-terminal
 
+    # doom emacs
+    ripgrep
+    fd
+
     # Samba for Storage Box
     cifs-utils
   ];
