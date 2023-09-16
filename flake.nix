@@ -15,7 +15,7 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      numenor = lib.nixosSystem {
+      eriador = lib.nixosSystem {
         inherit system;
         modules = [ ./configuration.nix ];
       };
