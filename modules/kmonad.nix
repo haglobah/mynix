@@ -139,7 +139,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.kmonad;
+      default = pkgs.haskellPackages.kmonad;
       example = "pkgs.haskellPackages.kmonad";
       description = "The KMonad package to use.";
     };

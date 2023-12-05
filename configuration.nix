@@ -100,6 +100,8 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
+  nixpkgs.config.allowBroken = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = ["root" "beat"];
 
@@ -113,8 +115,78 @@
     enable = true;
     keyboards = {
       rae-dux = {
-        device = "usb-ZMK_Project_rae-dux_80A754E8A90B89C0-event-kbd";
-        config = ./kmonad.kbd;
+        device = /dev/input/by-id/usb-ZMK_Project_rae-dux_80A754E8A90B89C0-event-kbd;
+        config = ''
+(defcfg
+  ;; For Linux
+  input  (device-file "/dev/input/by-id/usb-04d9_daskeyboard-event-kbd")
+  output (uinput-sink "My KMonad output"
+    ;; To understand the importance of the following line, see the section on
+    ;; Compose-key sequences at the near-bottom of this file.
+    "/run/current-system/sw/bin/sleep 1 && /run/current-system/sw/bin/setxkbmap -option compose:ralt")
+  cmp-seq ralt    ;; Set the compose key to `RightAlt'
+  cmp-seq-delay 5 ;; 5ms delay between each compose-key sequence press
+
+  ;; Comment this if you want unhandled events not to be emitted
+  fallthrough true
+
+  ;; Set this to false to disable any command-execution in KMonad
+  allow-cmd true
+)
+
+(defsrc
+   q    w    f    p    b    j    l    u    y    '
+   a    s    d    f    g    m    n    e    i    o
+   z    x    c    d    v    k    h    ,    .    ?
+             tab  bspc del  ret  spc  esc
+)
+
+(defalias 
+  launch (layer-toggle launch))
+
+(deflayer standard
+   q    w    f    p    b    j    l    u    y    '
+   a    s    d    f    g    m    n    e    i    o
+   z    x    c    d    v    k    h    ,    .    ?
+             tab  bspc del  ret  spc  esc
+)
+
+(deflayer 
+   _    _    _    _    _    _    _    _    _    _
+   _    _    _    _    _    _    _    _    _    _
+   _    _    _    _    _    _    _    _    _    _
+             _    _    _    _    _    _
+)
+
+(defalias
+  num  (layer-toggle numbers) ;; Bind num to a button that switches to a layer
+  kil  C-A-del                ;; Bind kil to a button that Ctrl-Alt-deletes
+)
+
+(deflayer qwerty
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl @num lalt           spc            ralt rmet @sym @tst
+)
+
+(defalias
+  dat (cmd-button "date >> /tmp/kmonad_example.txt")   ;; Append date to tmpfile
+  pth (cmd-button "echo $PATH > /tmp/kmonad_path.txt") ;; Write out PATH
+  ;; `dat' on press and `pth' on release
+  bth (cmd-button "date >> /tmp/kmonad_example.txt"
+                  "echo $PATH > /tmp/kmonad_path.txt")
+)
+
+(deflayer command-test
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    @dat @pth _
+  _    _    _              _              _    _    _    _
+)
+        '';
       };
     };
   };
