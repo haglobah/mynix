@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/kmonad.nix
     ];
 
   # Bootloader.
@@ -56,6 +57,7 @@
   services.xserver = {
     layout = "us";
     xkbVariant = "";
+    xkbOptions = "compose:ralt";
   };
 
   # Enable CUPS to print documents.
@@ -87,7 +89,7 @@
   users.users.beat = {
     isNormalUser = true;
     description = "Beat Hagenlocher";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "uinput" "input" ];
     packages = with pkgs; [
     #  firefox
     #  thunderbird
@@ -105,6 +107,16 @@
     automatic = true;
     dates = "monthly";
     options = "--delete-older-than 90d";
+  };
+
+  services.kmonad = {
+    enable = true;
+    keyboards = {
+      rae-dux = {
+        device = "usb-ZMK_Project_rae-dux_80A754E8A90B89C0-event-kbd";
+        config = ./kmonad.kbd;
+      };
+    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -126,6 +138,7 @@
     gnome-contacts
     gnome-initial-setup
   ]);
+
   programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs; [
