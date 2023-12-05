@@ -109,11 +109,32 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.gnome.excludePackages = [
+    pkgs.gnome-tour
+    ] ++ (with pkgs.gnome; [
+    cheese # webcam tool
+    gnome-music
+    gedit # text editor
+    epiphany # web browser
+    geary # email reader
+    gnome-characters
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+    yelp # Help view
+    gnome-contacts
+    gnome-initial-setup
+  ]);
+  programs.dconf.enable = true;
+
   environment.systemPackages = with pkgs; [
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     home-manager
     gnome.gnome-terminal
+    gnomeExtensions.pop-shell
+    gnome.gnome-tweaks
 
     # doom emacs
     ripgrep
