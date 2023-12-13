@@ -98,10 +98,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "root" "beat" ];
-  };
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = ["root" "beat"];
+
   nix.gc = {
     automatic = true;
     dates = "monthly";
@@ -110,12 +109,29 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.gnome.excludePackages = [
+    pkgs.gnome-tour
+    ] ++ (with pkgs.gnome; [
+    cheese # webcam tool
+    gnome-music
+    gedit # text editor
+    epiphany # web browser
+    geary # email reader
+    gnome-characters
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+    yelp # Help view
+    gnome-contacts
+    gnome-initial-setup
+  ]);
+  programs.dconf.enable = true;
+
   environment.systemPackages = with pkgs; [
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    emacs
     home-manager
-    gnome.gnome-terminal
 
     # doom emacs
     ripgrep
@@ -154,6 +170,10 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
+  # networking.firewall = {
+  #   enable = true;
+  #   allowedTCPPorts = [ 4000 8080 ];
+  # };
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
