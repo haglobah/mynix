@@ -98,8 +98,10 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "root" "beat" ];
+  };
   nix.gc = {
     automatic = true;
     dates = "monthly";
