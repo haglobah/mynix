@@ -17,7 +17,11 @@
     nixosConfigurations = {
       numenor = lib.nixosSystem {
         inherit system;
-        modules = [ ./configuration.nix ];
+        modules = [ ./configuration.nix ./hardware/numenor.nix ./numenor.nix ];
+      };
+      eriador = lib.nixosSystem {
+        inherit system;
+        modules = [ ./configuration.nix ./hardware/eriador.nix ./eriador.nix ];
       };
     };
   };
