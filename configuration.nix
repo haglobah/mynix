@@ -62,6 +62,17 @@
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
+    # Enable ydotool for working with 'alles'
+    systemd.services = {
+      run-ydotoold = {
+        path = [ pkgs.ydotool ];
+        script = ''
+          ydotoold --socket-path=/run/user/1000/.ydotool_socket --socket-own=1000:100
+        '';
+        wantedBy = [ "multi-user.target" ];
+      };
+    };
+
     # Enable sound with pipewire.
     sound.enable = true;
     hardware.pulseaudio.enable = false;
