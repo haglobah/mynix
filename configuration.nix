@@ -64,12 +64,12 @@
 
     # Enable ydotool for working with 'alles'
     systemd.services = {
-      run-ydotoold = {
+      ydotoold = {
         path = [ pkgs.ydotool ];
         script = ''
           ydotoold --socket-path=/run/user/1000/.ydotool_socket --socket-own=1000:100
         '';
-        wantedBy = [ "multi-user.target" ];
+        wantedBy = [ "default.target" ];
       };
     };
 
