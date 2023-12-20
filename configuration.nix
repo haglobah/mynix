@@ -67,7 +67,7 @@
       ydotoold = {
         path = [ pkgs.ydotool ];
         script = ''
-          ydotoold --socket-path=/run/user/1000/.ydotool_socket --socket-own=1000:100
+          ydotoold --socket-path=/tmp/.ydotool_socket --socket-own=1000:100
         '';
         wantedBy = [ "default.target" ];
       };
