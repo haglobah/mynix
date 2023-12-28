@@ -129,6 +129,18 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nix.settings.trusted-users = ["root" "beat"];
 
+    nix.registry.my = {
+      from = {
+        id = "my";
+        type = "indirect";
+      };
+      to = {
+        owner = "haglobah";
+        repo = "flakes";
+        type = "github";
+      };
+    };
+
     nix.gc = {
       automatic = true;
       dates = "monthly";
