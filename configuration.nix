@@ -71,6 +71,22 @@
         '';
         wantedBy = [ "default.target" ];
       };
+      config-updater = {
+        path = [
+          pkgs.git
+          pkgs.openssh
+        ];
+        script = ''
+          cd /home/beat/mynix
+          git pull
+          cd /home/beat/nix-home
+          git pull
+        '';
+        serviceConfig = {
+          User = config.users.users.beat.name;
+        };
+        startAt = "*-*-* 12:00:00";
+      };
     };
 
     # Enable sound with pipewire.
