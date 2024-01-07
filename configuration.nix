@@ -181,6 +181,14 @@
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     ];
 
+    age = {
+      secrets = {
+        storage-box-secret.file = ./secrets/storage-box-secret.age;
+      };
+
+      identityPaths = [ "/home/beat/.ssh/id_rsa" ];
+    };
+
     # Mount for storage box
     fileSystems."/mnt/share" = {
       device = "//u366465.your-storagebox.de/backup";
@@ -189,7 +197,7 @@
         # this line prevents hanging on network split
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+      in ["${automount_opts},credentials=${config.age.secrets.storage-box-secret.path},uid=1000,gid=100"];
     };
 
     # Some programs need SUID wrappers, can be configured further or are
