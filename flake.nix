@@ -36,6 +36,15 @@
           agenix.nixosModules.default
         ];
       };
+      gondor = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./configuration.nix
+          ./hardware/gondor.nix
+          ./gondor.nix
+          agenix.nixosModules.default
+        ];
+      };
     };
   };
 }
