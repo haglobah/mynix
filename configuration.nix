@@ -152,6 +152,7 @@
     environment = {
       systemPackages = with pkgs; [
         home-manager
+        bitwarden-cli
 
         # Samba for Storage Box
         cifs-utils
@@ -174,6 +175,11 @@
         gnome-contacts
         gnome-initial-setup
       ]);
+
+      sessionVariables = {
+        BW_CLIENTID = "${config.age.secrets.bitwarden-client-id.path}";
+        BW_CLIENTSECRET = "${config.age.secrets.bitwarden-client-secret.path}";
+      };
     };
     programs.dconf.enable = true;
 
@@ -184,6 +190,8 @@
     age = {
       secrets = {
         storage-box-secret.file = ./secrets/storage-box-secret.age;
+        bitwarden-client-id.file = ./secrets/bitwarden-client-id.age;
+        bitwarden-client-secret.file = ./secrets/bitwarden-client-secret.age;
       };
 
       identityPaths = [ "/home/beat/.ssh/id_rsa" ];
