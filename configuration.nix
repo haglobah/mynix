@@ -177,8 +177,8 @@
       ]);
 
       sessionVariables = {
-        BW_CLIENTID = "${config.age.secrets.bitwarden-client-id.path}";
-        BW_CLIENTSECRET = "${config.age.secrets.bitwarden-client-secret.path}";
+        BW_CLIENTID = "$(cat ${config.age.secrets.bitwarden-client-id.path})";
+        BW_CLIENTSECRET = "$(cat ${config.age.secrets.bitwarden-client-secret.path})";
       };
     };
     programs.dconf.enable = true;
@@ -190,8 +190,14 @@
     age = {
       secrets = {
         storage-box-secret.file = ./secrets/storage-box-secret.age;
-        bitwarden-client-id.file = ./secrets/bitwarden-client-id.age;
-        bitwarden-client-secret.file = ./secrets/bitwarden-client-secret.age;
+        bitwarden-client-id = {
+          file = ./secrets/bitwarden-client-id.age;
+          owner = "beat";
+        };
+        bitwarden-client-secret = {
+          file = ./secrets/bitwarden-client-secret.age;
+          owner = "beat";
+        };
       };
 
       identityPaths = [ "/home/beat/.ssh/id_rsa" ];
