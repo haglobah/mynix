@@ -114,10 +114,12 @@
     virtualisation.docker.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
+    programs.fish.enable = true;
     users.users.beat = {
       isNormalUser = true;
       description = "Beat Hagenlocher";
       extraGroups = [ "networkmanager" "wheel" "docker"];
+      shell = pkgs.fish;
       packages = with pkgs; [
       #  firefox
       #  thunderbird
