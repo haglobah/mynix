@@ -197,7 +197,7 @@
         };
       };
 
-      identityPaths = [ "/home/beat/.ssh/id_rsa" ];
+      identityPaths = [ "/home/beat/.ssh/id_rsa" "/home/beat/.ssh/id_ed25519" ];
     };
 
     # Mount for storage box
