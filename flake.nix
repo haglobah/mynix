@@ -1,33 +1,14 @@
 {
   description = "My NixOS config flake";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://cache.lix.systems"
-    ];
-    extra-trusted-public-keys = [
-      "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-    ];
-  };
-
   inputs = {
-
     nixpkgs.url = "github:nixos/nixpkgs/24.05";
 
-    lix = {
-      url = "git+https://git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
-      flake = false;
-    };
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };    
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, lix-module, agenix, ... }:
+  outputs = { nixpkgs, agenix, ... }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -39,8 +20,7 @@
     nixosConfigurations = {
       numenor = lib.nixosSystem {
         inherit system;
-        modules = [ 
-          lix-module.nixosModules.default
+        modules = [
           ./configuration.nix
           ./hardware/numenor.nix
           ./numenor.nix
@@ -49,8 +29,7 @@
       };
       eriador = lib.nixosSystem {
         inherit system;
-        modules = [ 
-          lix-module.nixosModules.default
+        modules = [
           ./configuration.nix
           ./hardware/eriador.nix
           ./eriador.nix
@@ -60,7 +39,6 @@
       gondor = lib.nixosSystem {
         inherit system;
         modules = [
-          lix-module.nixosModules.default
           ./configuration.nix
           ./hardware/gondor.nix
           ./gondor.nix
