@@ -92,7 +92,7 @@
     };
 
     # Enable sound with pipewire.
-    sound.enable = true;
+    # sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
@@ -157,10 +157,9 @@
         cifs-utils
       ];
   
-      gnome.excludePackages = [
-        pkgs.gnome-tour
-        pkgs.gedit
-        ] ++ (with pkgs.gnome; [
+      gnome.excludePackages = with pkgs; [
+        gnome-tour
+        gedit
         cheese # webcam tool
         gnome-music
         epiphany # web browser
@@ -173,7 +172,7 @@
         yelp # Help view
         gnome-contacts
         gnome-initial-setup
-      ]);
+        ];
 
       sessionVariables = {
         BW_CLIENTID = "$(cat ${config.age.secrets.bitwarden-client-id.path})";
