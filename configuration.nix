@@ -130,20 +130,26 @@
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = (_: true);
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    nix.settings.trusted-users = ["root" "beat"];
+    nix = {
+      package = pkgs.nixVersions.latest;
 
-    nix.settings.extra-substituters = [
-      "https://cache.lix.systems"
-    ];
-    nix.settings.trusted-public-keys = [
-      "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-    ];
+      settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+        trusted-users = ["root" "beat"];
 
-    nix.gc = {
-      automatic = true;
-      dates = "monthly";
-      options = "--delete-older-than 90d";
+        extra-substituters = [
+          "https://cache.lix.systems"
+        ];
+        trusted-public-keys = [
+          "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+        ];
+      };
+      
+      gc = {
+        automatic = true;
+        dates = "monthly";
+        options = "--delete-older-than 90d";
+      };
     };
 
     # List packages installed in system profile. To search, run:
