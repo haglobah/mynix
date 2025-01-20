@@ -9,4 +9,5 @@ in
   "storage-box-secret.age".publicKeys = my-machines;
   "bitwarden-client-id.age".publicKeys = my-machines;
   "bitwarden-client-secret.age".publicKeys = my-machines;
+  "openai-api-key.age".publicKeys = my-machines;
 }

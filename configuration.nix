@@ -183,6 +183,7 @@
       sessionVariables = {
         BW_CLIENTID = "$(cat ${config.age.secrets.bitwarden-client-id.path})";
         BW_CLIENTSECRET = "$(cat ${config.age.secrets.bitwarden-client-secret.path})";
+        OPENAI_API_KEY = "$(cat ${config.age.secrets.openai-api-key.path})";
       };
     };
     programs.dconf.enable = true;
@@ -200,6 +201,10 @@
         };
         bitwarden-client-secret = {
           file = ./secrets/bitwarden-client-secret.age;
+          owner = "beat";
+        };
+        openai-api-key = {
+          file = ./secrets/openai-api-key.age;
           owner = "beat";
         };
       };
