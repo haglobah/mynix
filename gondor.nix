@@ -4,7 +4,6 @@
     networking.hostName = "gondor";
 
     environment.systemPackages = [
-      pkgs.linphone
     ];
   };
 }
