@@ -93,8 +93,8 @@
 
     # Enable sound with pipewire.
     # sound.enable = true;
-    hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
+    services.pulseaudio.enable = false;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -189,7 +189,8 @@
     programs.dconf.enable = true;
 
     fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
     ];
 
     age = {
