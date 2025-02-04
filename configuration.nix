@@ -144,7 +144,7 @@
           "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         ];
       };
-      
+
       gc = {
         automatic = true;
         dates = "monthly";
@@ -162,7 +162,7 @@
         # Samba for Storage Box
         cifs-utils
       ];
-  
+
       gnome.excludePackages = with pkgs; [
         gnome-tour
         gedit
@@ -178,7 +178,7 @@
         yelp # Help view
         gnome-contacts
         gnome-initial-setup
-        ];
+      ];
 
       sessionVariables = {
         BW_CLIENTID = "$(cat ${config.age.secrets.bitwarden-client-id.path})";
