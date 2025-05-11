@@ -181,6 +181,7 @@
       ];
 
       sessionVariables = {
+        BW_SESSION = "$(cat ${config.age.secrets.bitwarden-session.path})";
         BW_CLIENTID = "$(cat ${config.age.secrets.bitwarden-client-id.path})";
         BW_CLIENTSECRET = "$(cat ${config.age.secrets.bitwarden-client-secret.path})";
         OPENAI_API_KEY = "$(cat ${config.age.secrets.openai-api-key.path})";
@@ -196,6 +197,10 @@
     age = {
       secrets = {
         storage-box-secret.file = ./secrets/storage-box-secret.age;
+        bitwarden-session = {
+          file = ./secrets/bitwarden-session.age;
+          owner = "beat";
+        };
         bitwarden-client-id = {
           file = ./secrets/bitwarden-client-id.age;
           owner = "beat";
