@@ -182,6 +182,7 @@
 
       sessionVariables = {
         OPENAI_API_KEY = "$(cat ${config.age.secrets.openai-api-key.path})";
+        ANTHROPIC_API_KEY = "$(cat ${config.age.secrets.anthropic-api-key.path})";
       };
     };
     programs.dconf.enable = true;
@@ -196,6 +197,10 @@
         storage-box-secret.file = ./secrets/storage-box-secret.age;
         openai-api-key = {
           file = ./secrets/openai-api-key.age;
+          owner = "beat";
+        };
+        anthropic-api-key = {
+          file = ./secrets/anthropic-api-key.age;
           owner = "beat";
         };
       };
