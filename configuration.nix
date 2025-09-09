@@ -134,6 +134,8 @@
       package = pkgs.nixVersions.latest;
 
       settings = {
+        # https://github.com/NixOS/nix/issues/11728
+        download-buffer-size = 524288000;
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = ["root" "beat"];
 
