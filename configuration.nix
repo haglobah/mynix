@@ -130,12 +130,22 @@
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = (_: true);
 
+    # Use lix instead of nix
+    nixpkgs.overlays = [ (final: prev: {
+      inherit (final.lixPackageSets.stable)
+        nixpkgs-review
+        nix-direnv
+        nix-eval-jobs
+        nix-fast-build
+        colmena;
+    }) ];
+
     nix = {
-      package = pkgs.nixVersions.latest;
+      package = pkgs.lixPackageSets.stable.lix;
 
       settings = {
         # https://github.com/NixOS/nix/issues/11728
-        download-buffer-size = 524288000;
+        # download-buffer-size = 524288000;
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = ["root" "beat"];
 
