@@ -195,6 +195,7 @@
       sessionVariables = {
         OPENAI_API_KEY = "$(cat ${config.age.secrets.openai-api-key.path})";
         ANTHROPIC_API_KEY = "$(cat ${config.age.secrets.anthropic-api-key.path})";
+        BLUESKY_APP_SECRET = "$(cat ${config.age.secrets.bluesky-app-secret.path})";
       };
     };
     programs.dconf.enable = true;
@@ -213,6 +214,10 @@
         };
         anthropic-api-key = {
           file = ./secrets/anthropic-api-key.age;
+          owner = "beat";
+        };
+        bluesky-app-secret = {
+          file = ./secrets/bluesky-app-secret.age;
           owner = "beat";
         };
       };
