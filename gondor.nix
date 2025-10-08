@@ -3,6 +3,8 @@
   config = {
     networking.hostName = "gondor";
 
+    boot.kernelParams = [ "ipv6.disable=1" ];
+
     networking.nameservers = [
       "1.1.1.1"
       "8.8.8.8"

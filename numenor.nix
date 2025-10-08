@@ -1,6 +1,6 @@
 {
   config = {
-    
+
     networking.hostName = "numenor";
 
   };
