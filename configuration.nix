@@ -6,8 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      # ./hardware-configuration.nix
+    [
+      ./configuration/docker.nix
+      ./configuration/secrets.nix
     ];
 
   config = {
@@ -111,16 +112,6 @@
     # Enable touchpad support (enabled default in most desktopManager).
     # services.xserver.libinput.enable = true;
 
-    virtualisation.docker.enable = true;
-    virtualisation.docker.daemon.settings = {
-      default-address-pools = [
-        {
-          base = "172.30.0.0/16";
-          size = 24;
-        }
-      ];
-    };
-
     # Define a user account. Don't forget to set a password with ‘passwd’.
     programs.fish.enable = true;
     users.users.beat = {
@@ -128,10 +119,6 @@
       description = "Beat Hagenlocher";
       extraGroups = [ "networkmanager" "wheel" "docker"];
       shell = pkgs.fish;
-      packages = with pkgs; [
-      #  firefox
-      #  thunderbird
-      ];
     };
 
     # Allow unfree packages
@@ -199,12 +186,6 @@
         gnome-contacts
         gnome-initial-setup
       ];
-
-      sessionVariables = {
-        OPENAI_API_KEY = "$(cat ${config.age.secrets.openai-api-key.path})";
-        ANTHROPIC_API_KEY = "$(cat ${config.age.secrets.anthropic-api-key.path})";
-        BLUESKY_APP_SECRET = "$(cat ${config.age.secrets.bluesky-app-secret.path})";
-      };
     };
     programs.dconf.enable = true;
 
@@ -212,26 +193,6 @@
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
     ];
-
-    age = {
-      secrets = {
-        storage-box-secret.file = ./secrets/storage-box-secret.age;
-        openai-api-key = {
-          file = ./secrets/openai-api-key.age;
-          owner = "beat";
-        };
-        anthropic-api-key = {
-          file = ./secrets/anthropic-api-key.age;
-          owner = "beat";
-        };
-        bluesky-app-secret = {
-          file = ./secrets/bluesky-app-secret.age;
-          owner = "beat";
-        };
-      };
-
-      identityPaths = [ "/home/beat/.ssh/id_rsa" "/home/beat/.ssh/id_ed25519" ];
-    };
 
     # Mount for storage box
     fileSystems."/mnt/share" = {
