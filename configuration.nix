@@ -117,7 +117,7 @@
     users.users.beat = {
       isNormalUser = true;
       description = "Beat Hagenlocher";
-      extraGroups = [ "networkmanager" "wheel" "docker"];
+      extraGroups = [ "networkmanager" "wheel" "docker" "dialout" "tty" ];
       shell = pkgs.fish;
     };
 
