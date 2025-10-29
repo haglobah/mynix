@@ -29,6 +29,19 @@
     # Enable bluetooth
     hardware.bluetooth.enable = true;
 
+    # Fix weirdest rae-dux bug
+    hardware.bluetooth.settings = {
+      General = {
+        JustWorksRepairing = "always";
+      };
+      LE = {
+        EnableAdvMonInterleaveScan = false;
+      };
+    };
+    systemd.user.services.gnome-bluetooth-agent = {
+      enable = false;
+    };
+
     # Set your time zone.
     time.timeZone = "Europe/Berlin";
 
