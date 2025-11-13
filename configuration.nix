@@ -54,6 +54,10 @@
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
 
+    # Set battery percentage warning to 30%
+    services.upower.percentageLow = 30;
+    services.upower.percentageCritical = 15;
+
     # Configure keymap in X11
     services.xserver.xkb = {
       layout = "us,de";
