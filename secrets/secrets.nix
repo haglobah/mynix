@@ -7,9 +7,4 @@ let
 in
 {
   "storage-box-secret.age".publicKeys = my-machines;
-  "openai-api-key.age".publicKeys = my-machines;
-  "anthropic-api-key.age".publicKeys = my-machines;
-  "bluesky-app-secret.age".publicKeys = my-machines;
-  "timetracking-secret.age".publicKeys = my-machines;
-  "timereporting-secret.age".publicKeys = my-machines;
 }
