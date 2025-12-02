@@ -146,6 +146,7 @@
         # https://github.com/NixOS/nix/issues/11728
         # download-buffer-size = 524288000;
         experimental-features = [ "nix-command" "flakes" ];
+        extra-deprecated-features = [ "url-literals" ];
         trusted-users = ["root" "beat"];
 
         extra-substituters = [
