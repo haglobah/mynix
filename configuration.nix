@@ -64,7 +64,10 @@
       variant = "";
     };
 
-    programs.hyprland.enable = true;
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
