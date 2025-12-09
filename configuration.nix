@@ -5,11 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./configuration/docker.nix
-      ./configuration/secrets.nix
-    ];
+  imports = [
+    ./configuration/docker.nix
+    ./configuration/secrets.nix
+  ];
 
   config = {
     # Bootloader.
@@ -124,7 +123,13 @@
     users.users.beat = {
       isNormalUser = true;
       description = "Beat Hagenlocher";
-      extraGroups = [ "networkmanager" "wheel" "docker" "dialout" "tty" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+        "dialout"
+        "tty"
+      ];
       shell = pkgs.fish;
     };
 
@@ -133,14 +138,17 @@
     nixpkgs.config.allowUnfreePredicate = (_: true);
 
     # Use lix instead of nix
-    nixpkgs.overlays = [ (final: prev: {
-      inherit (final.lixPackageSets.stable)
-        nixpkgs-review
-        nix-direnv
-        nix-eval-jobs
-        nix-fast-build
-        colmena;
-    }) ];
+    nixpkgs.overlays = [
+      (final: prev: {
+        inherit (final.lixPackageSets.stable)
+          nixpkgs-review
+          nix-direnv
+          nix-eval-jobs
+          nix-fast-build
+          colmena
+          ;
+      })
+    ];
 
     nix = {
       package = pkgs.lixPackageSets.stable.lix;
@@ -148,9 +156,15 @@
       settings = {
         # https://github.com/NixOS/nix/issues/11728
         # download-buffer-size = 524288000;
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         extra-deprecated-features = [ "url-literals" ];
-        trusted-users = ["root" "beat"];
+        trusted-users = [
+          "root"
+          "beat"
+        ];
 
         extra-substituters = [
           "https://cache.lix.systems"
@@ -197,6 +211,12 @@
     };
     programs.dconf.enable = true;
 
+    programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+
     fonts.packages = with pkgs; [
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
@@ -206,11 +226,13 @@
     fileSystems."/mnt/share" = {
       device = "//u366465.your-storagebox.de/backup";
       fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      options =
+        let
+          # this line prevents hanging on network split
+          automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-      in ["${automount_opts},credentials=${config.age.secrets.storage-box-secret.path},uid=1000,gid=100"];
+        in
+        [ "${automount_opts},credentials=${config.age.secrets.storage-box-secret.path},uid=1000,gid=100" ];
     };
 
     # Some programs need SUID wrappers, can be configured further or are
