@@ -2,7 +2,7 @@
   description = "My NixOS config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     nixpkgs-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
     agenix.url = "github:ryantm/agenix";
@@ -52,15 +52,15 @@
         config.allowUnfreePredicate = (_: true);
         overlays = [
           # use lix instead of nix
-          (final: prev: {
-            inherit (final.lixPackageSets.stable)
-              nixpkgs-review
-              nix-direnv
-              nix-eval-jobs
-              nix-fast-build
-              colmena
-              ;
-          })
+          # (final: prev: {
+          #   inherit (final.lixPackageSets.stable)
+          #     nixpkgs-review
+          #     nix-direnv
+          #     nix-eval-jobs
+          #     nix-fast-build
+          #     colmena
+          #     ;
+          # })
           (final: prev: {
             alles = inputs.alles.packages.${system}.default;
           })

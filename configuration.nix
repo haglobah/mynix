@@ -134,7 +134,7 @@
     };
 
     nix = {
-      package = pkgs.lixPackageSets.stable.lix;
+      # package = pkgs.lixPackageSets.stable.lix;
 
       settings = {
         # https://github.com/NixOS/nix/issues/11728
@@ -143,18 +143,18 @@
           "nix-command"
           "flakes"
         ];
-        extra-deprecated-features = [ "url-literals" ];
+        # extra-deprecated-features = [ "url-literals" ];
         trusted-users = [
           "root"
           "beat"
         ];
 
-        extra-substituters = [
-          "https://cache.lix.systems"
-        ];
-        trusted-public-keys = [
-          "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-        ];
+        # extra-substituters = [
+        #   "https://cache.lix.systems"
+        # ];
+        # trusted-public-keys = [
+        #   "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+        # ];
       };
 
       gc = {
