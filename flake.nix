@@ -28,10 +28,15 @@
       url = "github:active-group/nix-starter-kit";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    inputs@{ nixpkgs, agenix, ... }:
+    inputs@{ nixpkgs, agenix, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -68,11 +73,13 @@
         };
         gondor = lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
             ./hardware/gondor.nix
             ./gondor.nix
-            import ./the-home.nix inputs
+            home-manager.nixosModules.home-manager
+            ./the-home.nix
             agenix.nixosModules.default
           ];
         };

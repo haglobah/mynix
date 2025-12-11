@@ -680,6 +680,26 @@
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765461410,
+        "narHash": "sha256-AVZ1y5tfTGqf5zJx6uY52KHN2pP9gGF9RMQ3meBVKIg=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "7b34e428f31ce52baabda53e52bf14002e1c0625",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_3": {
+      "inputs": {
+        "nixpkgs": [
           "nix-starter-kit",
           "nixpkgs"
         ]
@@ -904,7 +924,7 @@
         "active-accounting": "active-accounting",
         "active-timetracking": "active-timetracking",
         "flake-parts": "flake-parts_11",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager_3",
         "mac-app-util": "mac-app-util",
         "nixpkgs": [
           "nixpkgs"
@@ -1285,6 +1305,7 @@
         "alles": "alles",
         "catppuccin": "catppuccin",
         "firefox-addons": "firefox-addons",
+        "home-manager": "home-manager_2",
         "nix-index-database": "nix-index-database",
         "nix-starter-kit": "nix-starter-kit",
         "nixpkgs": "nixpkgs_11"
