@@ -20,12 +20,12 @@
 
   config = {
     # nix.settings.extra-deprecated-features = [ "url-literals" ];
-    active-group.timetracking = {
-      enable = true;
-      timetracking-token = config.age.secrets.timetracking-secret.path;
-      arbeitszeiten-token = config.age.secrets.arbeitszeiten-secret.path;
-      abrechenbare-zeiten-token = config.age.secrets.abrechenbare-zeiten-secret.path;
-    };
+    # active-group.timetracking = {
+    #   enable = true;
+    #   timetracking-token = config.age.secrets.timetracking-secret.path;
+    #   arbeitszeiten-token = config.age.secrets.arbeitszeiten-secret.path;
+    #   abrechenbare-zeiten-token = config.age.secrets.abrechenbare-zeiten-secret.path;
+    # };
     nixpkgs.config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
@@ -64,13 +64,13 @@
         pass
 
         # for secrets
-        agenix
+        inputs.agenix.packages.${system}.default
 
         # for `nix`
         nixd
 
         # for `alles`
-        alles
+        inputs.alles.packages.${system}.default
         ydotool
         wl-clipboard
 

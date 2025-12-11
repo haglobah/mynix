@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,10 +25,11 @@
       url = "github:haglobah/alles";
     };
 
-    nix-starter-kit = {
-      url = "github:active-group/nix-starter-kit";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-starter-kit = {
+    #   url = "github:active-group/nix-starter-kit";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.home-manager.follows = "home-manager";
+    # };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -36,12 +38,29 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, agenix, home-manager, ... }:
+    inputs@{
+      nixpkgs,
+      agenix,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
+        config.allowUnfree = true;
+        config.allowUnfreePredicate = (_: true);
         overlays = [
+          # use lix instead of nix
+          (final: prev: {
+            inherit (final.lixPackageSets.stable)
+              nixpkgs-review
+              nix-direnv
+              nix-eval-jobs
+              nix-fast-build
+              colmena
+              ;
+          })
           (final: prev: {
             alles = inputs.alles.packages.${system}.default;
           })
@@ -72,7 +91,7 @@
           ];
         };
         gondor = lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
           specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
