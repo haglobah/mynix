@@ -25,11 +25,11 @@
       url = "github:haglobah/alles";
     };
 
-    # nix-starter-kit = {
-    #   url = "github:active-group/nix-starter-kit";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.home-manager.follows = "home-manager";
-    # };
+    nix-starter-kit = {
+      url = "github:active-group/nix-starter-kit";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.home-manager.follows = "home-manager";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
