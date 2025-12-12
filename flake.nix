@@ -52,15 +52,15 @@
         config.allowUnfreePredicate = (_: true);
         overlays = [
           # use lix instead of nix
-          # (final: prev: {
-          #   inherit (final.lixPackageSets.stable)
-          #     nixpkgs-review
-          #     nix-direnv
-          #     nix-eval-jobs
-          #     nix-fast-build
-          #     colmena
-          #     ;
-          # })
+          (final: prev: {
+            inherit (final.lixPackageSets.stable)
+              nixpkgs-review
+              nix-direnv
+              nix-eval-jobs
+              nix-fast-build
+              colmena
+              ;
+          })
           (final: prev: {
             alles = inputs.alles.packages.${system}.default;
           })
