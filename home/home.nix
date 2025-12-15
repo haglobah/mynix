@@ -23,20 +23,12 @@
   ];
 
   config = {
-    # nix.settings.extra-deprecated-features = [ "url-literals" ];
     active-group.timetracking = {
       enable = true;
       timetracking-token = config.age.secrets.timetracking-secret.path;
       arbeitszeiten-token = config.age.secrets.arbeitszeiten-secret.path;
       abrechenbare-zeiten-token = config.age.secrets.abrechenbare-zeiten-secret.path;
     };
-    # nixpkgs.config = {
-    #   allowUnfree = true;
-    #   allowUnfreePredicate = _: true;
-    #   # permittedInsecurePackages = [
-    #   #   "electron-25.9.0"
-    #   # ];
-    # };
 
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -69,13 +61,13 @@
         nix-output-monitor
 
         # for secrets
-        inputs.agenix.packages.${system}.default
+        agenix
 
         # for `nix`
         nixd
 
         # for `alles`
-        inputs.alles.packages.${system}.default
+        alles
         ydotool
         wl-clipboard
 

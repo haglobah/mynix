@@ -101,12 +101,8 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
-              # home-manager.useUserPackages = true;
               home-manager.users."beat" = ./home/home.nix;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              # home-manager.sharedModules = [
-              #   agenix.homeManagerModules.default
-              # ];
             }
             agenix.nixosModules.default
           ];
