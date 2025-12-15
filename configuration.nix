@@ -134,7 +134,7 @@
     };
 
     nix = {
-      package = pkgs.lixPackageSets.stable.lix;
+      # package = pkgs.lixPackageSets.stable.lix;
 
       settings = {
         # https://github.com/NixOS/nix/issues/11728

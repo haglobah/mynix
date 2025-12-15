@@ -25,11 +25,11 @@
       url = "github:haglobah/alles";
     };
 
-    # nix-starter-kit = {
-    #   url = "github:active-group/nix-starter-kit";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.home-manager.follows = "home-manager";
-    # };
+    nix-starter-kit = {
+      url = "github:active-group/nix-starter-kit";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -50,17 +50,18 @@
         inherit system;
         config.allowUnfree = true;
         config.allowUnfreePredicate = (_: true);
+        # config.nix.settings.extra-deprecated-features = [ "url-literals" ];
         overlays = [
           # use lix instead of nix
-          (final: prev: {
-            inherit (final.lixPackageSets.stable)
-              nixpkgs-review
-              nix-direnv
-              nix-eval-jobs
-              nix-fast-build
-              colmena
-              ;
-          })
+          # (final: prev: {
+          #   inherit (final.lixPackageSets.stable)
+          #     nixpkgs-review
+          #     nix-direnv
+          #     nix-eval-jobs
+          #     nix-fast-build
+          #     colmena
+          #     ;
+          # })
           (final: prev: {
             alles = inputs.alles.packages.${system}.default;
           })
@@ -98,7 +99,15 @@
             ./hardware/gondor.nix
             ./gondor.nix
             home-manager.nixosModules.home-manager
-            ./the-home.nix
+            {
+              home-manager.useGlobalPkgs = true;
+              # home-manager.useUserPackages = true;
+              home-manager.users."beat" = ./home/home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              # home-manager.sharedModules = [
+              #   agenix.homeManagerModules.default
+              # ];
+            }
             agenix.nixosModules.default
           ];
         };

@@ -6,6 +6,10 @@
 }:
 {
   imports = [
+    inputs.nix-index-database.homeModules.nix-index
+    inputs.catppuccin.homeModules.catppuccin
+    inputs.agenix.homeManagerModules.default
+    inputs.nix-starter-kit.homeModules.timetracking
     ./modules/registry.nix
     ./modules/email.nix
     ./modules/autostart.nix
@@ -20,19 +24,19 @@
 
   config = {
     # nix.settings.extra-deprecated-features = [ "url-literals" ];
-    # active-group.timetracking = {
-    #   enable = true;
-    #   timetracking-token = config.age.secrets.timetracking-secret.path;
-    #   arbeitszeiten-token = config.age.secrets.arbeitszeiten-secret.path;
-    #   abrechenbare-zeiten-token = config.age.secrets.abrechenbare-zeiten-secret.path;
-    # };
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-      # permittedInsecurePackages = [
-      #   "electron-25.9.0"
-      # ];
+    active-group.timetracking = {
+      enable = true;
+      timetracking-token = config.age.secrets.timetracking-secret.path;
+      arbeitszeiten-token = config.age.secrets.arbeitszeiten-secret.path;
+      abrechenbare-zeiten-token = config.age.secrets.abrechenbare-zeiten-secret.path;
     };
+    # nixpkgs.config = {
+    #   allowUnfree = true;
+    #   allowUnfreePredicate = _: true;
+    #   # permittedInsecurePackages = [
+    #   #   "electron-25.9.0"
+    #   # ];
+    # };
 
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -62,6 +66,7 @@
         dua
         gnupg
         pass
+        nix-output-monitor
 
         # for secrets
         inputs.agenix.packages.${system}.default
@@ -347,8 +352,6 @@
             }
           ];
         };
-
-        pijul_channel.disabled = false;
       };
     };
 
