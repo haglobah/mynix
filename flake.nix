@@ -35,6 +35,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vimium-options.url = "github:uimataso/vimium-nixos";
   };
 
   outputs =

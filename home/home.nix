@@ -10,6 +10,8 @@
     inputs.catppuccin.homeModules.catppuccin
     inputs.agenix.homeManagerModules.default
     inputs.nix-starter-kit.homeModules.timetracking
+    inputs.vimium-options.homeManagerModules.vimium-options
+
     ./modules/registry.nix
     ./modules/email.nix
     ./modules/autostart.nix
@@ -290,6 +292,24 @@
           ublock-origin
         ];
         extensions.force = true;
+      };
+    };
+
+    home.vimiumOptions = {
+      enable = true;
+
+      outputFilePath = ".cache/vimium-options.json";
+
+      keyMappings = {
+        unmapAll = true;
+        map = {
+          j = "goBack";
+          y = "goForward";
+          l = "scrollPageDown";
+          u = "scrollPageUp";
+          f = "LinkHints.activateMode";
+          p = "LinkHints.activateModeToOpenInNewTab";
+        };
       };
     };
 
