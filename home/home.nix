@@ -250,6 +250,7 @@
         enabled_layouts = "splits:split_axis=horizontal";
         allow_remote_control = "yes";
         hide_window_decorations = "yes";
+        font_size = 16;
       };
 
       keybindings = {
