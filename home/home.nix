@@ -306,8 +306,8 @@
       keyMappings = {
         unmapAll = true;
         map = {
-          j = "goBack";
-          y = "goForward";
+          n = "goBack";
+          e = "goForward";
           l = "scrollPageDown";
           u = "scrollPageUp";
           f = "LinkHints.activateMode";
