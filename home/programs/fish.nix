@@ -21,6 +21,10 @@
           expansion = "nix shell n#% -c fish";
           setCursor = true;
         };
+        "nst" = {
+          expansion = "nix shell this#% -c fish";
+          setCursor = true;
+        };
         "nsu" = {
           expansion = "NIXPKGS_ALLOW_UNFREE=1 nix shell n#% --impure -c fish";
           setCursor = true;
@@ -39,6 +43,10 @@
         "nra" = "nix run . --";
         "nrn" = {
           expansion = "nix run n#%";
+          setCursor = true;
+        };
+        "nrt" = {
+          expansion = "nix run this#%";
           setCursor = true;
         };
         "nru" = {
