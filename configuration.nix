@@ -51,7 +51,13 @@
 
     # Enable the GNOME Desktop Environment.
     services.displayManager.gdm.enable = true;
-    services.desktopManager.gnome.enable = true;
+    services.desktopManager.gnome = {
+      enable = true;
+      extraGSettingsOverrides = ''
+        [org.gnome.mutter.keybindings]
+        switch-monitor=['<Shift><Super>p', 'XF86Display']
+      '';
+    };
 
     # Set battery percentage warning to 30%
     services.upower.percentageLow = 30;
