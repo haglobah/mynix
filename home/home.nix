@@ -314,6 +314,21 @@
           p = "LinkHints.activateModeToOpenInNewTab";
         };
       };
+
+      exclusionRules = [
+        {
+          passKeys = "";
+          pattern = "https?://mail.google.com/*";
+        }
+        {
+          passKeys = "n";
+          pattern = "https?://focus.nirvanahq.com/*";
+        }
+        {
+          passKeys = "n";
+          pattern = "https?://app.mochi.cards/*";
+        }
+      ];
     };
 
     programs.nix-index = {
