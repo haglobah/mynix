@@ -89,6 +89,7 @@
         "jt" = "just test";
         "joc" = "just open chromium";
         "jod" = "just open chromium && just dev";
+        "joa" = "just open chromium && just all";
 
         "k" = "kubectl";
         "kg" = "kubectl get";
