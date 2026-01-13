@@ -131,8 +131,7 @@
             owner = "zed-industries";
             repo = "claude-code-acp";
             rev = "v0.4.5";
-            hash = "sha256-kkAQuYP2S5EwIGJV8TLrlYzHOC54vmxEHwwuZD5P1hI=
-";
+            hash = "sha256-kkAQuYP2S5EwIGJV8TLrlYzHOC54vmxEHwwuZD5P1hI=";
           };
           npmDepsHash = "sha256-IR88NP1AiR6t/MLDdaZY1Np0AE7wfqEUfmnohaf0ymc=";
           meta = with pkgs.lib; {
@@ -158,13 +157,11 @@
       ]
       ++ [
         inputs.nixpkgs-24-11.legacyPackages."x86_64-linux".linphone
+        pkgs.gnomeExtensions.run-or-raise
       ];
 
     home.file = {
-      # ".local/share/gnome-shell/extensions/gnome-magic-window@adrienverge/extension.js".source =
-      #   dotfiles/gnome-magic-window/extension.js;
-      # ".local/share/gnome-shell/extensions/gnome-magic-window@adrienverge/metadata.json".source =
-      #   dotfiles/gnome-magic-window/metadata.json;
+      ".config/run-or-raise/shortcuts.conf".source = dotfiles/shortcuts.conf;
 
       ".config/zed/settings.json".source = dotfiles/zed/settings.json;
       ".config/zed/keymap.json".source = dotfiles/zed/keymap.json;
@@ -185,7 +182,7 @@
     #
     # if you don't want to manage your shell through Home Manager.
     home.sessionVariables = {
-      # GNOME_SHELL_SLOWDOWN_FACTOR = 0.4;
+      GNOME_SHELL_SLOWDOWN_FACTOR = 0.35;
       # https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
       LSP_USE_PLISTS = "true";
     };
@@ -198,9 +195,9 @@
       };
 
       "org/gnome/shell" = {
-        # disable-user-extensions = false;
+        disable-user-extensions = false;
 
-        # enabled-extensions = [ "gnome-magic-window@adrienverge" ];
+        enabled-extensions = [ "run-or-raise@edvard.cz" ];
       };
       "org/gnome/shell/keybindings" = {
         toggle-message-tray = [ ];
