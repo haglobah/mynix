@@ -161,10 +161,10 @@
       ];
 
     home.file = {
-      ".local/share/gnome-shell/extensions/gnome-magic-window@adrienverge/extension.js".source =
-        dotfiles/gnome-magic-window/extension.js;
-      ".local/share/gnome-shell/extensions/gnome-magic-window@adrienverge/metadata.json".source =
-        dotfiles/gnome-magic-window/metadata.json;
+      # ".local/share/gnome-shell/extensions/gnome-magic-window@adrienverge/extension.js".source =
+      #   dotfiles/gnome-magic-window/extension.js;
+      # ".local/share/gnome-shell/extensions/gnome-magic-window@adrienverge/metadata.json".source =
+      #   dotfiles/gnome-magic-window/metadata.json;
 
       ".config/zed/settings.json".source = dotfiles/zed/settings.json;
       ".config/zed/keymap.json".source = dotfiles/zed/keymap.json;
@@ -185,7 +185,7 @@
     #
     # if you don't want to manage your shell through Home Manager.
     home.sessionVariables = {
-      GNOME_SHELL_SLOWDOWN_FACTOR = 0.4;
+      # GNOME_SHELL_SLOWDOWN_FACTOR = 0.4;
       # https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
       LSP_USE_PLISTS = "true";
     };
@@ -198,9 +198,9 @@
       };
 
       "org/gnome/shell" = {
-        disable-user-extensions = false;
+        # disable-user-extensions = false;
 
-        enabled-extensions = [ "gnome-magic-window@adrienverge" ];
+        # enabled-extensions = [ "gnome-magic-window@adrienverge" ];
       };
       "org/gnome/shell/keybindings" = {
         toggle-message-tray = [ ];
