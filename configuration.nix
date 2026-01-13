@@ -177,7 +177,6 @@
     environment = {
       systemPackages = with pkgs; [
         home-manager
-        bitwarden-cli
 
         # Samba for Storage Box
         cifs-utils
