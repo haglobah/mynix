@@ -17,8 +17,6 @@
 
     # Use latest kernel
     boot.kernelPackages = pkgs.linuxPackages_latest;
-    # https://www.reddit.com/r/framework/comments/1goh7hc/anyone_else_get_this_screen_flickering_issue/
-    boot.kernelParams = ["amdgpu.dcdebugmask=0x410"];
     # networking.hostName = "numenor"; # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
