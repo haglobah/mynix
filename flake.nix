@@ -2,7 +2,7 @@
   description = "My NixOS config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=addf7cf5f383a3101ecfba091b98d0a1263dc9b8";
     nixpkgs-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
     agenix.url = "github:ryantm/agenix";
