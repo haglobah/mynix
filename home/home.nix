@@ -10,7 +10,7 @@
     inputs.catppuccin.homeModules.catppuccin
     inputs.agenix.homeManagerModules.default
     inputs.nix-starter-kit.homeModules.timetracking
-    inputs.nix-starter-kit.homeModules.khard
+    # inputs.nix-starter-kit.homeModules.khard
     inputs.vimium-options.homeManagerModules.vimium-options
 
     ./modules/registry.nix
@@ -34,10 +34,10 @@
         abrechenbare-zeiten-token = config.age.secrets.abrechenbare-zeiten-secret.path;
       };
 
-      khard = {
-        enable = true;
-        storagePath = "/home/beat/ag/addresses/vcf";
-      };
+      # khard = {
+      #   enable = true;
+      #   storagePath = "/home/beat/ag/addresses/vcf";
+      # };
     };
 
     # Home Manager needs a bit of information about you and the paths it should
