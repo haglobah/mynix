@@ -6,6 +6,7 @@ let
   my-machines = [ eriador numenor gondor-0 gondor ];
 in
 {
+  "openrouter-api-key.age".publicKeys = my-machines;
   "openai-api-key.age".publicKeys = my-machines;
   "anthropic-api-key.age".publicKeys = my-machines;
   "google-api-key.age".publicKeys = my-machines;

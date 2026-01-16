@@ -9,6 +9,7 @@
   config = {
     age = {
       secrets = {
+        openrouter-api-key.file = ./secrets/openrouter-api-key.age;
         openai-api-key.file = ./secrets/openai-api-key.age;
         anthropic-api-key.file = ./secrets/anthropic-api-key.age;
         google-api-key.file = ./secrets/google-api-key.age;
@@ -25,6 +26,7 @@
     };
 
     home.sessionVariables = {
+      OPENROUTER_API_KEY = "$(cat ${config.age.secrets.openai-api-key.path})";
       OPENAI_API_KEY = "$(cat ${config.age.secrets.openai-api-key.path})";
       ANTHROPIC_API_KEY = "$(cat ${config.age.secrets.anthropic-api-key.path})";
       GOOGLE_API_KEY = "$(cat ${config.age.secrets.google-api-key.path})";
