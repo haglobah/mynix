@@ -124,23 +124,7 @@
         captive-browser
 
         # AI
-        (pkgs.buildNpmPackage {
-          pname = "claude-code-acp";
-          version = "0.4.5";
-          src = pkgs.fetchFromGitHub {
-            owner = "zed-industries";
-            repo = "claude-code-acp";
-            rev = "v0.4.5";
-            hash = "sha256-kkAQuYP2S5EwIGJV8TLrlYzHOC54vmxEHwwuZD5P1hI=";
-          };
-          npmDepsHash = "sha256-IR88NP1AiR6t/MLDdaZY1Np0AE7wfqEUfmnohaf0ymc=";
-          meta = with pkgs.lib; {
-            description = "An ACP-compatible coding agent powered by the Claude Code SDK (TypeScript)";
-            homepage = "https://github.com/zed-industries/claude-code-acp";
-            license = licenses.asl20;
-            maintainers = [ ];
-          };
-        })
+        claude-code-acp
 
         # # It is sometimes useful to fine-tune packages, for example, by applying
         # # overrides. You can do that directly here, just don't forget the
