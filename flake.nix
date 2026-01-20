@@ -86,7 +86,7 @@
       lib = nixpkgs.lib;
     in
     {
-      devShells.${system}.default = pkgs.mkShell { packages = [ pkgs.nixfmt-rfc-style ]; };
+      devShells.${system}.default = pkgs.mkShell { packages = [ pkgs.nixfmt ]; };
       nixosConfigurations = {
         numenor = lib.nixosSystem {
           inherit system;
