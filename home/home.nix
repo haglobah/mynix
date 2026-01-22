@@ -87,9 +87,15 @@
         fd
         emacs-lsp-booster
 
-        # for aider
+        # AI
         aider-chat-with-playwright
         python314
+        claude-code
+        claude-code-acp
+        codex
+        codex-acp
+        gemini-cli
+        opencode
 
         # Install globally to make gleam-ts-mode happy
         gleam
@@ -122,9 +128,6 @@
 
         # Useful for login networks: https://discourse.nixos.org/t/does-wifionice-wifi-on-deutsche-bahn-german-railway-work-for-you/41646
         captive-browser
-
-        # AI
-        claude-code-acp
 
         # # It is sometimes useful to fine-tune packages, for example, by applying
         # # overrides. You can do that directly here, just don't forget the
