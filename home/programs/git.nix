@@ -32,7 +32,8 @@
         user.email = "bah@posteo.de";
         user.name = "Beat Hagenlocher";
         color.ui = "auto";
-        core.sshCommand = "ssh -i ~/.ssh/id_rsa -i ~/.ssh/id_ed25519 2> /dev/null";
+        # Breaks active-timetracking
+        # core.sshCommand = "ssh -i ~/.ssh/id_rsa -i ~/.ssh/id_ed25519 2> /dev/null";
         init.defaultBranch = "main";
         checkout.defaultRemote = "origin";
         rerere.enabled = true;
