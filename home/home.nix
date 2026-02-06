@@ -271,15 +271,9 @@
       };
     };
 
-    programs.firefox = {
-      enable = true;
-      profiles.beat = {
-        settings = {
-          "signon.rememberSignons" = false;
-          "layout.spellcheckDefault" = "0";
-        };
-
-        extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
+    programs.firefox =
+      let
+        extensionPkgs = with inputs.firefox-addons.packages."x86_64-linux"; [
           custom-tab-title-from-file
           bitwarden
           darkreader
@@ -287,9 +281,22 @@
           vimium
           ublock-origin
         ];
-        extensions.force = true;
+      in
+      {
+        enable = true;
+        profiles.beat = {
+          isDefault = true;
+          id = 0;
+          name = "beat";
+          settings = {
+            "signon.rememberSignons" = false;
+            "layout.spellcheckDefault" = "0";
+          };
+
+          extensions.packages = extensionPkgs;
+          extensions.force = true;
+        };
       };
-    };
 
     home.vimiumOptions = {
       enable = true;
